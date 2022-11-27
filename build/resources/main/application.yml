@@ -1,0 +1,5 @@
+spring:
+  security:
+    user:
+      password: 20220801
+      name: player
