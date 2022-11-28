@@ -1,9 +1,10 @@
-package com.digika.jwt.config;
+package com.digika.jwt.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
@@ -16,21 +17,17 @@ import org.springframework.security.oauth2.jwt.*;
  */
 @EnableWebSecurity
 public class WebSecurityConfig {
+    private final JwtTokenProvider jwtTokenProvider;
 
-    // @Bean
-    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    //     /*
-    //      * This is where we configure the security required for our endpoints and setup
-    //      * our app to serve as
-    //      * an OAuth2 Resource Server, using JWT validation.
-    //      */
-    //     http.authorizeHttpRequests()
-    //             .requestMatchers("/public").permitAll()
-    //             .requestMatchers("/players").authenticated()
-    //             .and().cors()
-    //             .and().oauth2ResourceServer().jwt();
-    //     return http.build();
-    // }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeHttpRequests().requestMatchers("/auth/signin", "/auth/signup").permitAll()
+        .anyRequest().authenticated();
+        http.exceptionHandling().accessDeniedPage("/login");
+        http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
+    }
 
     @Bean
     JwtDecoder jwtDecoder() {

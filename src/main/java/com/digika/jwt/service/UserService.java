@@ -1,8 +1,6 @@
-package murraco.service;
+package com.digika.jwt.service;
 
-import javax.servlet.http.HttpServletRequest;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,13 +8,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import murraco.exception.CustomException;
-import murraco.model.AppUser;
-import murraco.repository.UserRepository;
-import murraco.security.JwtTokenProvider;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
   private final UserRepository userRepository;

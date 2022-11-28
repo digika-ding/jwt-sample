@@ -1,4 +1,4 @@
-package murraco.security;
+package com.digika.jwt.security;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
