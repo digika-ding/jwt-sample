@@ -21,7 +21,9 @@
 			"extensions": [
 				"vscjava.vscode-java-pack",
 				"vscjava.vscode-gradle",
-				"Pivotal.vscode-boot-dev-pack"
+				"Pivotal.vscode-boot-dev-pack",
+				"redhat.vscode-yaml",
+				"ms-vsliveshare.vsliveshare"
 			]
 		}
 	},
