@@ -1,5 +1,11 @@
+auth0:
+  audience: com.sorotouch
 spring:
   security:
     user:
       password: 20220801
       name: player
+    oauth2:
+      resourceserver:
+          jwt:
+              issuer-uri: http://localhost
